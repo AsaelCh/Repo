@@ -39,4 +39,26 @@ public class AppointmentTest {
         );
     }
 
+
+    @Test
+    public void instanceAppointment_nullPatient_InvalidAppointmentException() {
+        // Arrange
+        UUID id = UUID.fromString(
+                "7e8ad860-716d-4b86-9643-430870caefe7"
+        );
+
+        // Act & Assert
+        Assertions.assertThrows(
+                InvalidAppointmentException.class,
+                () -> Appointment.instance(
+                        id,
+                        null,
+                        "Robert Smith",
+                        "Cardiology",
+                        LocalDate.of(2026, 11, 10)
+                )
+        );
+    }
+
+
 }
