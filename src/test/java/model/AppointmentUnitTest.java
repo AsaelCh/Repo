@@ -1,15 +1,14 @@
-
 package model;
 
-import appointment.exception.InvalidAppointmentException;
-import appointment.model.Appointment;
+import Appointment.Exception.InvalidAppointmentException;
+import Appointment.model.Appointment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class AppointmentTest {
+public class AppointmentUnitTest {
 
     @Test
     public void instanceAppointment_validFields_success() {
@@ -81,6 +80,19 @@ public class AppointmentTest {
         );
     }
 
+    @Test
+    public void instanceAppointment_nullDoctor_InvalidAppointmentException() {
+        Assertions.assertThrows(
+                InvalidAppointmentException.class,
+                () -> Appointment.instance(
+                        UUID.randomUUID(),
+                        "Juan Perez",
+                        null,
+                        "Cardiologia",
+                        LocalDate.of(2026, 11, 10)
+                )
+        );
+    }
 
 
 }
